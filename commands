@@ -1,0 +1,11 @@
+# Remove all images
+docker images -q | xargs docker rmi
+
+# List volumes
+docker volume ls
+
+# Remove volume
+docker volume rm <volume name>
+
+# Run with docker-compose
+docker-compose run app bash
