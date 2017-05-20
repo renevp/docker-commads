@@ -1,5 +1,6 @@
 # Remove all images
 docker images -q | xargs docker rmi
+docker rmi $(docker images -a -q)
 
 # List volumes
 docker volume ls
@@ -9,3 +10,24 @@ docker volume rm <volume name>
 
 # Run with docker-compose
 docker-compose run app bash
+
+# Remove all the exiting containers
+docker rm $(docker ps -a -f status=exited -q)
+
+# Run docker container
+docker container run httpd:2.4
+
+# Run docker container with a port 
+docker container run -p 80:80 httpd:2.4
+
+# Execute a command in the container
+docker container exec upbeat_bardeen du -mh
+
+# Execute a shell inside the container
+docker container exec -it upbeat_bardeen bash
+
+# Build a image
+docker image build --tag web-server:1.0 .
+
+# Run new built image
+docker container run --publish 80:80 web-server:1.0
