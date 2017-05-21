@@ -28,6 +28,17 @@ docker container exec -it upbeat_bardeen bash
 
 # Build a image
 docker image build --tag web-server:1.0 .
+docker image build -t web-server:1.1 .
 
 # Run new built image
-docker container run --publish 80:80 web-server:1.0
+docker container run -p 80:80 web-server:1.0
+docker container run -p 80:80 --detach web-server:1.1
+
+# Copy file inside a container
+curl localhost:80/page.html
+docker container cp page.html elegant_noether:/usr/local/apache2/htdocs/
+
+# Creating a volume
+docker run -d -p 80:80 -v /my-files:/usr/local/apache2/htdocs web-server:1.1
+
+
