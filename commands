@@ -8,6 +8,9 @@ docker volume ls
 # Remove volume
 docker volume rm <volume name>
 
+# remove dangling volumes
+docker volume rm `docker volume ls -q -f dangling=true`
+
 # Run with docker-compose
 docker-compose run app bash
 
