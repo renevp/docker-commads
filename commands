@@ -44,4 +44,5 @@ docker container cp page.html elegant_noether:/usr/local/apache2/htdocs/
 # Creating a volume
 docker run -d -p 80:80 -v /my-files:/usr/local/apache2/htdocs web-server:1.1
 
-
+# Query containers without truncate
+docker ps -a --no-trunc
